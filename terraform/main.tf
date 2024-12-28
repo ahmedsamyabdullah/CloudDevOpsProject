@@ -24,3 +24,18 @@ module "ec2"{
   key_name       = "ivlove"
   ami_id         = var.ami_id
 }
+
+###           S3-bucket   ####
+
+module "s3" {
+  source = "./modules/s3"
+  bucket_name = var.bucket_name 
+}
+
+######################## Cloud-watch #####################
+
+module "clouddwatch_alarm" {
+    source = "./modules/cloud-watch"
+    instance_id = module.ec2.instance_id
+    email = var.email
+}

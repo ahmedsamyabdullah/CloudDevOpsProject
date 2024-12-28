@@ -36,3 +36,14 @@ variable "ami_id" {
   type        = string
   default = "ami-00317fa7ec113e2e4"
 }
+
+####################### S3 #######################
+variable "bucket_name" {
+  description = "The name of the S3 bucket"
+  type        = string
+  default = "nti-ivolve25"
+}
+variable "email" {
+  type = string
+  default = "engahmedsamymohamed@yahoo.com"
+}

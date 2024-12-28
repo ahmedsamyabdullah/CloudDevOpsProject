@@ -6,6 +6,7 @@ Nti-ivolve graduation project
 2. [Task 1](#Task1)
 3. [Task 2](#task2)
 4. [Task 3](#task3)
+5. [Task 4](#task4)
 
 
 
@@ -94,4 +95,16 @@ Nti-ivolve graduation project
 *** 
 ### Task 3 <a name="task3"></a>  
   #### Task Name:  AWS Integration  
-  
+* Using S3 as a Terraform backend allows for shared state management and ensures the state file is consistently stored.  
+
+* S3 files:  
+  * create main.tf for s3 [s3-file](terraform/modules/s3/main.tf)  
+  * create variables.tf for s3 [s3-file](terraform/modules/s3/variables.tf)  
+
+* CloudWatch  
+    * Create main file [cloud watch](terraform/modules/cloud-watch/main.tf)  
+    * Create variables file [cloud watch variables](terraform/modules/cloud-watch/variables.tf)  
+    <br>
+***  
+### Task 4 <a name="task4"></a>  
+### Task Name:  Configuration Management with Ansible  
