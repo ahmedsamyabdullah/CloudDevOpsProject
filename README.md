@@ -5,6 +5,7 @@ Nti-ivolve graduation project
 1. [List Of Tasks](#tasks)
 2. [Task 1](#Task1)
 3. [Task 2](#task2)
+4. [Task 3](#task3)
 
 
 
@@ -73,13 +74,24 @@ Nti-ivolve graduation project
     #### Deploy VPC  
 
     a. Initialize Terraform $ terraform init  
+![terraform init](imgs/04%20terraform%20init.PNG)
 
-        ![terraform init](./imgs/04%20terraform%20init.PNG)
 
     b. $ terraform apply  
 
-        ![check terraform apply](./imgs/05%20tr%20apply.PNG)
+![check terraform apply](imgs/05%20tr%20apply.PNG)
 
-        ![aws check](./imgs/06%20aws%20check.PNG)
+![aws check](./imgs/06%20aws%20check.PNG)
 
-    #### Deploy Security-group
+    #### Deploy Security-group  
+![sg-aws check](./imgs/07%20sg-aws.PNG)  
+
+   #### Deploy EC2  
+
+   After creating EC2 , check the status  
+![ec2-check](./imgs/08%20ec2.PNG)  
+
+*** 
+### Task 3 <a name="task3"></a>  
+  #### Task Name:  AWS Integration  
+  

@@ -22,3 +22,17 @@ variable "availability_zones" {
   type        = list(string)
   default = [ "us-east-1a", "us-east-1b" ]
 }
+variable "vpc_id" {
+  type = string
+  default = "vpc-0277ca48ee00f74d4"
+}
+variable "instance_type" {
+  description = "The EC2 instance type"
+   type        = string
+  default     = "t2.micro"
+}
+variable "ami_id" {
+  description = "The AMI ID to use for the EC2 instance"
+  type        = string
+  default = "ami-00317fa7ec113e2e4"
+}
