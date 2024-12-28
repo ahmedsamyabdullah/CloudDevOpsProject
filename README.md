@@ -12,7 +12,7 @@ Nti-ivolve graduation project
 
 
 
-## 1. Content Of Tasks <a name="#tasks"></a>
+## 1. Content Of Tasks <a name="tasks"></a>
     * Containerization with Docker
     * Infrastructure Provisioning with Terraform
     * AWS Integration
@@ -32,7 +32,8 @@ Nti-ivolve graduation project
     * $ docker build .
     ![docker build](imgs/02%20docker%20build.PNG)<br>
 ***
-## Task 2 <a name="#task2"></a>
+## Task 2 <a name="task2"></a>  
+
 ### Task Name: Infrastructure Provisioning with Terraform:
 #### Deliver Terraform scripts to provision AWS resources including:
 
@@ -43,11 +44,13 @@ Nti-ivolve graduation project
 ***
 1. Create a Directory Structure to organize the terraform scripts into modules. <br>
 ![Terraform modules](imgs/03%20terraform%20modules.PNG) <br>
-2. create vpc dir inside modules dir:
+2. create vpc dir inside modules dir:  
+
     a. create main.tf [vpc-main.tf](terraform/modules/vpc/main.tf)  
 
-    b. create variables.tf [vpc-variables.tf](terraform/modules/vpc/variables.tf)
-<br>
+    b. create variables.tf [vpc-variables.tf](terraform/modules/vpc/variables.tf)  
+
+
 3. create security-group dir within modules dir:  
 
     a. create main.tf [sg-main.tf](terraform/modules/security-group/main.tf)  
@@ -56,23 +59,27 @@ Nti-ivolve graduation project
 
 
 
-4. create ec2 dir within modules dir:
+4. create ec2 dir within modules dir:  
+
     a. create main.tf [ec2-main.tf](terraform/modules/ec2/main.tf)  
 
     b. create variables.tf [ec2-variables.tf](terraform/modules/ec2/variables.tf)  
 
 
-5. integrate modules in main.tf [main.tf](terraform/main.tf)
+5. integrate modules in main.tf [main.tf](terraform/main.tf)  
+
 6. Deploy the infrastrucure 
-    #### Deploy VPC
+
+    #### Deploy VPC  
+
     a. Initialize Terraform $ terraform init  
 
-        ![terraform init](imgs/04%20terraform%20init.PNG)  
+        ![terraform init](./imgs/04%20terraform%20init.PNG)
 
     b. $ terraform apply  
 
-        ![check terraform apply](./imgs/05%20tr%20apply.PNG)  
+        ![check terraform apply](./imgs/05%20tr%20apply.PNG)
 
-        ![aws check](./imgs/06%20aws%20check.PNG)  
-        
+        ![aws check](./imgs/06%20aws%20check.PNG)
+
     #### Deploy Security-group
