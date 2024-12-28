@@ -1,0 +1,9 @@
+---
+- name: Set environment variables for Jenkins and SonarQube
+  lineinfile:
+    path: /etc/environment
+    line: "{{ item }}"
+  loop:
+    - "JAVA_HOME=/usr/lib/jvm/{{ java_version }}"
+    - "JENKINS_HOME=/var/lib/jenkins"
+    - "SONARQUBE_HOME=/opt/sonarqube-{{ sonarqube_version }}"

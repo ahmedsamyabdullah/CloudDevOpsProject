@@ -1,0 +1,41 @@
+---
+- name: Install dependencies for SonarQube
+  apt:
+    name:
+      - openjdk-11-jdk
+      - unzip
+    state: present
+    update_cache: yes
+
+- name: Download SonarQube
+  get_url:
+    url: "https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-{{ sonarqube_version }}.zip"
+    dest: "/tmp/sonarqube.zip"
+
+- name: Unzip SonarQube
+  unarchive:
+    src: "/tmp/sonarqube.zip"
+    dest: "/opt"
+    remote_src: yes
+
+- name: Set permissions for SonarQube directory
+  file:
+    path: "/opt/sonarqube-{{ sonarqube_version }}"
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Create a SonarQube user
+  user:
+    name: sonarqube
+    shell: /bin/bash
+    create_home: yes
+
+- name: Set environment variables for SonarQube
+  lineinfile:
+    path: /etc/profile.d/sonarqube.sh
+    line: "export SONARQUBE_HOME=/opt/sonarqube-{{ sonarqube_version }}"
+    create: yes
+
+- name: Start SonarQube
+  command: "/opt/sonarqube-{{ sonarqube_version }}/bin/linux-x86-64/sonar.sh start"

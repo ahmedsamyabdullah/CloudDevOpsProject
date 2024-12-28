@@ -108,3 +108,4 @@ Nti-ivolve graduation project
 ***  
 ### Task 4 <a name="task4"></a>  
 ### Task Name:  Configuration Management with Ansible  
+* ansible playbook [playbook](ansible/playbook.yml)

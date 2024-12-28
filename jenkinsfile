@@ -1,0 +1,94 @@
+pipeline {
+    agent { label 'your-slave-label' }  // Use a specific Jenkins slave for execution
+    environment {
+        REGISTRY = 'your-registry-url'
+        IMAGE_NAME = 'your-image-name'
+        SONARQUBE_URL = 'http://your-sonarqube-url'
+        SONARQUBE_PROJECT_KEY = 'your-sonarqube-project-key'
+        OPENSHIFT_PROJECT = 'your-openshift-project'
+        OPENSHIFT_SERVER = 'https://your-openshift-cluster-url'
+        OPENSHIFT_TOKEN = credentials('openshift-token')  // OpenShift Token from Jenkins credentials store
+    }
+    tools {
+        jdk 'jdk11'  // Example tool, adjust as needed
+        maven 'maven3'  // Example tool, adjust as needed
+    }
+    stages {
+        stage('Git Checkout') {
+            steps {
+                checkout scm  // Checkout the source code from the configured SCM
+            }
+        }
+        
+        stage('Unit Test') {
+            steps {
+                script {
+                    // Assuming a Maven project for unit tests, adjust for other build tools if needed
+                    sh 'mvn clean test'
+                }
+            }
+        }
+        
+        stage('Build JAR') {
+            steps {
+                script {
+                    // Build the JAR file with Maven or your preferred build tool
+                    sh 'mvn clean package'
+                }
+            }
+        }
+        
+        stage('SonarQube Test') {
+            steps {
+                script {
+                    // Perform SonarQube analysis
+                    withSonarQubeEnv('SonarQube') {
+                        sh 'mvn sonar:sonar -Dsonar.projectKey=${SONARQUBE_PROJECT_KEY} -Dsonar.host.url=${SONARQUBE_URL}'
+                    }
+                }
+            }
+        }
+        
+        stage('Build Image') {
+            steps {
+                script {
+                    // Build the Docker image
+                    sh 'docker build -t ${REGISTRY}/${IMAGE_NAME}:${BUILD_NUMBER} .'
+                }
+            }
+        }
+        
+        stage('Push Image to Registry') {
+            steps {
+                script {
+                    // Push the Docker image to the registry
+                    withDockerRegistry([credentialsId: 'docker-credentials', url: 'https://your-docker-registry-url']) {
+                        sh 'docker push ${REGISTRY}/${IMAGE_NAME}:${BUILD_NUMBER}'
+                    }
+                }
+            }
+        }
+
+        stage('Deploy on OpenShift') {
+            steps {
+                script {
+                    // Deploy the image on OpenShift
+                    sh '''
+                        oc login ${OPENSHIFT_SERVER} --token=${OPENSHIFT_TOKEN}
+                        oc project ${OPENSHIFT_PROJECT}
+                        oc set image deployment/your-deployment-name your-container=${REGISTRY}/${IMAGE_NAME}:${BUILD_NUMBER}
+                        oc rollout restart deployment/your-deployment-name
+                    '''
+                }
+            }
+        }
+    }
+    post {
+        success {
+            echo 'Pipeline completed successfully.'
+        }
+        failure {
+            echo 'Pipeline failed. Check the logs for details.'
+        }
+    }
+}
