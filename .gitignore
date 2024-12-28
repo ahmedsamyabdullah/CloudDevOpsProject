@@ -1,0 +1,19 @@
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+*.tfplan
+
+# Ignore override files as well
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Ignore .terraformrc and terraform.rc
+.terraformrc
+terraform.rc
+
+# Ignore environment variable files
+.env
+.envrc
