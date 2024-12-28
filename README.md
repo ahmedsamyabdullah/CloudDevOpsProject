@@ -44,25 +44,35 @@ Nti-ivolve graduation project
 1. Create a Directory Structure to organize the terraform scripts into modules. <br>
 ![Terraform modules](imgs/03%20terraform%20modules.PNG) <br>
 2. create vpc dir inside modules dir:
-    a. create main.tf [vpc-main.tf](terraform/modules/vpc/main.tf)
+    a. create main.tf [vpc-main.tf](terraform/modules/vpc/main.tf)  
+
     b. create variables.tf [vpc-variables.tf](terraform/modules/vpc/variables.tf)
 <br>
-3. create security-group dir within modules dir:
-    a. create main.tf [sg-main.tf](terraform/modules/security-group/main.tf)
-    b. create variables.tf [sg-variables.tf](terraform/modules/security-group/variables.tf)
-    c. create outputs.tf [sg-outputs.tf](terraform/modules/security-group/outputs.tf)
-<br>
+3. create security-group dir within modules dir:  
+
+    a. create main.tf [sg-main.tf](terraform/modules/security-group/main.tf)  
+
+    b. create variables.tf [sg-variables.tf](terraform/modules/security-group/variables.tf)  
+
+
+
 4. create ec2 dir within modules dir:
-    a. create main.tf [ec2-main.tf](terraform/modules/ec2/main.tf)
-    b. create variables.tf [ec2-variables.tf](terraform/modules/ec2/variables.tf)
-    c. create outputs.tf [ec2-outputs.tf](terraform/modules/ec2/outputs.tf)
-<br>
+    a. create main.tf [ec2-main.tf](terraform/modules/ec2/main.tf)  
+
+    b. create variables.tf [ec2-variables.tf](terraform/modules/ec2/variables.tf)  
+
+
 5. integrate modules in main.tf [main.tf](terraform/main.tf)
 6. Deploy the infrastrucure 
     #### Deploy VPC
-    a. Initialize Terraform $ terraform init
-        ![terraform init](imgs/04%20terraform%20init.PNG)<br>
-    b. $ terraform apply
-        ![check terraform apply](./imgs/05%20tr%20apply.PNG) <br>
-        ![aws check](./imgs/06%20aws%20check.PNG) <br>
+    a. Initialize Terraform $ terraform init  
+
+        ![terraform init](imgs/04%20terraform%20init.PNG)  
+
+    b. $ terraform apply  
+
+        ![check terraform apply](./imgs/05%20tr%20apply.PNG)  
+
+        ![aws check](./imgs/06%20aws%20check.PNG)  
+        
     #### Deploy Security-group
